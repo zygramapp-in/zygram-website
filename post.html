@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create Post</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: #f2f2f2;
+      padding-bottom: 70px;
+    }
+
+    textarea {
+      width: 90%;
+      height: 120px;
+      margin: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      margin: 0 20px;
+      width: 90%;
+      padding: 12px;
+      background: #6a0dad;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 18px;
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      border-top: 1px solid #ccc;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-size: 20px;
+      color: #6a0dad;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2 style="text-align:center;color:#6a0dad;">Create Post</h2>
+
+<textarea id="postText" placeholder="What's on your mind?"></textarea>
+
+<button onclick="addPost()">Post</button>
+
+<div class="nav">
+  <a href="home.html">🏠</a>
+  <a href="post.html">➕</a>
+  <a href="profile.html">👤</a>
+</div>
+
+<script>
+function addPost() {
+  var text = document.getElementById("postText").value;
+
+  if (text === "") {
+    alert("Write something first");
+    return;
+  }
+
+  localStorage.setItem("post", text);
+  alert("Posted!");
+  window.location.href = "home.html";
+}
+</script>
+
+</body>
+</html>
