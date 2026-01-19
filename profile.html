@@ -7,8 +7,8 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial;
-      background: #f2f2f2;
+      font-family: Arial, sans-serif;
+      background: #f5f0ff;
     }
 
     header {
@@ -20,7 +20,7 @@
       font-weight: bold;
     }
 
-    .profile-box {
+    .profile {
       background: white;
       padding: 20px;
       text-align: center;
@@ -75,8 +75,13 @@
       background: white;
       padding: 15px;
       border-radius: 12px;
-      margin-bottom: 12px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .post img {
+      width: 100%;
+      border-radius: 10px;
     }
 
     .nav {
@@ -87,7 +92,7 @@
       display: flex;
       justify-content: space-around;
       padding: 12px 0;
-      border-top: 1px solid #ccc;
+      border-top: 1px solid #ddd;
     }
 
     .nav a {
@@ -102,13 +107,13 @@
 
 <header>Profile</header>
 
-<div class="profile-box">
+<div class="profile">
   <div class="avatar" id="avatar">Z</div>
   <div class="username" id="username">@zygram</div>
   <div class="bio">Welcome to Zygram 💜</div>
 
   <div class="stats">
-    <div><span id="postsCount">0</span><br>Posts</div>
+    <div><span id="postCount">0</span><br>Posts</div>
     <div><span>0</span><br>Followers</div>
     <div><span>0</span><br>Following</div>
   </div>
@@ -123,31 +128,33 @@
 </div>
 
 <script>
-let username = localStorage.getItem("username") || "zygram";
-let posts = JSON.parse(localStorage.getItem("posts")) || [];
+  let username = localStorage.getItem("username") || "zygram";
+  let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
-document.getElementById("username").innerText = "@" + username;
-document.getElementById("avatar").innerText = username.charAt(0).toUpperCase();
+  document.getElementById("username").innerText = "@" + username;
+  document.getElementById("avatar").innerText =
+    username.charAt(0).toUpperCase();
 
-let myPosts = posts.filter(p => p.user === username);
+  let myPosts = posts.filter(p => p.user === username);
 
-document.getElementById("postsCount").innerText = myPosts.length;
+  document.getElementById("postCount").innerText = myPosts.length;
 
-let container = document.getElementById("userPosts");
+  let box = document.getElementById("userPosts");
 
-if (myPosts.length === 0) {
-  container.innerHTML = "<p style='text-align:center;color:gray;'>No posts yet</p>";
-}
+  if (myPosts.length === 0) {
+    box.innerHTML =
+      "<p style='text-align:center;color:gray;'>No posts yet</p>";
+  }
 
-myPosts.reverse().forEach(p => {
-  let div = document.createElement("div");
-  div.className = "post";
-  div.innerHTML = `
-    <div>${p.text}</div>
-    <div style="font-size:12px;color:gray;margin-top:6px;">${p.time}</div>
-  `;
-  container.appendChild(div);
-});
+  myPosts.reverse().forEach(post => {
+    let div = document.createElement("div");
+    div.className = "post";
+    div.innerHTML = `
+      <img src="${post.image}">
+      <p>${post.caption}</p>
+    `;
+    box.appendChild(div);
+  });
 </script>
 
 </body>
