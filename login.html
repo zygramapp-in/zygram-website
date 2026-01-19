@@ -7,7 +7,7 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       background: #6a0dad;
       display: flex;
       justify-content: center;
@@ -24,10 +24,7 @@
       text-align: center;
     }
 
-    h2 {
-      color: #6a0dad;
-      margin-bottom: 20px;
-    }
+    h2 { color: #6a0dad; }
 
     input {
       width: 100%;
@@ -46,37 +43,37 @@
       border: none;
       border-radius: 8px;
       font-size: 18px;
-      margin-top: 10px;
-      cursor: pointer;
-    }
-
-    p {
-      margin-top: 15px;
-      font-size: 14px;
-    }
-
-    a {
-      color: #6a0dad;
-      text-decoration: none;
-      font-weight: bold;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="box">
-    <h2>Login to Zygram</h2>
+<div class="box">
+  <h2>Login to Zygram</h2>
 
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
+  <input type="text" id="username" placeholder="Username">
+  <input type="password" id="password" placeholder="Password">
 
-    <button>Login</button>
+  <button onclick="login()">Login</button>
+</div>
 
-    <p>Don’t have an account?  
-      <a href="index.html">Sign up</a>
-    </p>
-  </div>
+<script>
+function login() {
+  var u = document.getElementById("username").value;
+  var p = document.getElementById("password").value;
+
+  var su = localStorage.getItem("username");
+  var sp = localStorage.getItem("password");
+
+  if (u === su && p === sp) {
+    alert("Login successful!");
+    window.location.href = "home.html";
+  } else {
+    alert("Wrong username or password");
+  }
+}
+</script>
 
 </body>
 </html>
