@@ -7,8 +7,14 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: Arial;
       background: #f5f0ff;
+      color: #000;
+    }
+
+    body.dark {
+      background: #121212;
+      color: #fff;
     }
 
     header {
@@ -24,6 +30,10 @@
       background: white;
       padding: 20px;
       text-align: center;
+    }
+
+    body.dark .profile {
+      background: #1f1f1f;
     }
 
     .avatar {
@@ -48,57 +58,29 @@
 
     .bio {
       font-size: 14px;
-      color: gray;
       margin-top: 5px;
     }
 
-    .stats {
-      display: flex;
-      justify-content: space-around;
+    input {
+      width: 90%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px 18px;
+      background: #6a0dad;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    .toggle {
       margin-top: 15px;
-    }
-
-    .stats div {
-      font-size: 14px;
-    }
-
-    .stats span {
-      font-weight: bold;
-      font-size: 18px;
-    }
-
-    .posts {
-      padding: 15px;
-    }
-
-    .post {
-      background: white;
-      padding: 15px;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      box-shadow: 0 0 5px rgba(0,0,0,0.1);
-    }
-
-    .post img {
-      width: 100%;
-      border-radius: 10px;
-    }
-
-    .nav {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: white;
-      display: flex;
-      justify-content: space-around;
-      padding: 12px 0;
-      border-top: 1px solid #ddd;
-    }
-
-    .nav a {
-      text-decoration: none;
-      font-size: 24px;
-      color: #6a0dad;
     }
   </style>
 </head>
@@ -108,53 +90,56 @@
 <header>Profile</header>
 
 <div class="profile">
+
   <div class="avatar" id="avatar">Z</div>
-  <div class="username" id="username">@zygram</div>
-  <div class="bio">Welcome to Zygram 💜</div>
 
-  <div class="stats">
-    <div><span id="postCount">0</span><br>Posts</div>
-    <div><span>0</span><br>Followers</div>
-    <div><span>0</span><br>Following</div>
+  <div class="username" id="username">@user</div>
+
+  <div class="bio" id="bioText">No bio</div>
+
+  <input type="text" id="bioInput" placeholder="Edit your bio">
+
+  <br>
+  <button onclick="saveBio()">Save Bio</button>
+
+  <div class="toggle">
+    <button onclick="toggleDark()">🌙 Dark Mode</button>
   </div>
-</div>
 
-<div class="posts" id="userPosts"></div>
-
-<div class="nav">
-  <a href="home.html">🏠</a>
-  <a href="post.html">➕</a>
-  <a href="profile.html">👤</a>
 </div>
 
 <script>
-  let username = localStorage.getItem("username") || "zygram";
-  let posts = JSON.parse(localStorage.getItem("posts")) || [];
+let username = localStorage.getItem("username") || "zygram";
+let bio = localStorage.getItem("bio") || "Welcome to Zygram 💜";
 
-  document.getElementById("username").innerText = "@" + username;
-  document.getElementById("avatar").innerText =
-    username.charAt(0).toUpperCase();
+document.getElementById("username").innerText = "@" + username;
+document.getElementById("avatar").innerText = username.charAt(0).toUpperCase();
+document.getElementById("bioText").innerText = bio;
 
-  let myPosts = posts.filter(p => p.user === username);
+function saveBio() {
+  let newBio = document.getElementById("bioInput").value;
 
-  document.getElementById("postCount").innerText = myPosts.length;
-
-  let box = document.getElementById("userPosts");
-
-  if (myPosts.length === 0) {
-    box.innerHTML =
-      "<p style='text-align:center;color:gray;'>No posts yet</p>";
+  if (newBio === "") {
+    alert("Write something");
+    return;
   }
 
-  myPosts.reverse().forEach(post => {
-    let div = document.createElement("div");
-    div.className = "post";
-    div.innerHTML = `
-      <img src="${post.image}">
-      <p>${post.caption}</p>
-    `;
-    box.appendChild(div);
-  });
+  localStorage.setItem("bio", newBio);
+  document.getElementById("bioText").innerText = newBio;
+  document.getElementById("bioInput").value = "";
+}
+
+function toggleDark() {
+  document.body.classList.toggle("dark");
+  localStorage.setItem(
+    "darkmode",
+    document.body.classList.contains("dark")
+  );
+}
+
+if (localStorage.getItem("darkmode") === "true") {
+  document.body.classList.add("dark");
+}
 </script>
 
 </body>
