@@ -8,20 +8,46 @@
     body {
       margin: 0;
       font-family: Arial;
-      background: #f4f4f4;
-      padding-bottom: 70px;
+      background: #f2f2f2;
     }
 
-    h2 {
+    header {
+      background: #6a0dad;
+      color: white;
+      padding: 15px;
       text-align: center;
-      color: #6a0dad;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    .feed {
+      padding: 15px;
+      padding-bottom: 90px;
     }
 
     .post {
       background: white;
-      margin: 15px;
       padding: 15px;
-      border-radius: 10px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .username {
+      font-weight: bold;
+      color: #6a0dad;
+      margin-bottom: 5px;
+    }
+
+    .time {
+      font-size: 12px;
+      color: gray;
+      margin-top: 8px;
+    }
+
+    .actions {
+      margin-top: 10px;
+      font-size: 20px;
     }
 
     .nav {
@@ -37,7 +63,7 @@
 
     .nav a {
       text-decoration: none;
-      font-size: 20px;
+      font-size: 24px;
       color: #6a0dad;
     }
   </style>
@@ -45,10 +71,9 @@
 
 <body>
 
-<h2>Zygram</h2>
+<header>Zygram</header>
 
-<div class="post" id="feed">
-</div>
+<div class="feed" id="feed"></div>
 
 <div class="nav">
   <a href="home.html">🏠</a>
@@ -57,15 +82,27 @@
 </div>
 
 <script>
-var post = localStorage.getItem("post");
+let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
-if (post) {
-  document.getElementById("feed").innerHTML =
-    "<b>@" + localStorage.getItem("username") + "</b><p>" + post + "</p>";
-} else {
-  document.getElementById("feed").innerHTML =
-    "<p style='text-align:center'>No posts yet</p>";
+let feed = document.getElementById("feed");
+
+if (posts.length === 0) {
+  feed.innerHTML = "<p style='text-align:center;color:gray;'>No posts yet</p>";
 }
+
+posts.forEach(post => {
+  let div = document.createElement("div");
+  div.className = "post";
+
+  div.innerHTML = `
+    <div class="username">@${post.user}</div>
+    <div>${post.text}</div>
+    <div class="actions">❤️ 💬 🔁</div>
+    <div class="time">${post.time}</div>
+  `;
+
+  feed.appendChild(div);
+});
 </script>
 
 </body>
