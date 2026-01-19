@@ -11,87 +11,76 @@
       background: #f2f2f2;
     }
 
-    .top {
+    .header {
       background: #6a0dad;
       color: white;
       padding: 15px;
       text-align: center;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
+    }
+
+    .post-box {
+      background: white;
+      margin: 15px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    textarea {
+      width: 100%;
+      height: 80px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: none;
+      font-size: 15px;
+    }
+
+    button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 12px;
+      background: #6a0dad;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
     }
 
     .post {
       background: white;
       margin: 15px;
+      padding: 15px;
       border-radius: 10px;
-      padding: 10px;
-    }
-
-    .user {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-
-    .image {
-      background: #ddd;
-      height: 200px;
-      border-radius: 8px;
-      margin: 10px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #777;
     }
 
     .actions {
-      font-size: 18px;
-    }
-
-    .bottom {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background: white;
+      margin-top: 10px;
       display: flex;
-      justify-content: space-around;
-      padding: 12px 0;
-      border-top: 1px solid #ccc;
-    }
-
-    .bottom a {
-      text-decoration: none;
-      color: #6a0dad;
-      font-weight: bold;
+      gap: 15px;
+      font-size: 18px;
     }
   </style>
 </head>
 
 <body>
 
-  <div class="top">Zygram</div>
+  <div class="header">Zygram</div>
 
-  <div class="post">
-    <div class="user">ayan_official</div>
-    <div class="image">Photo</div>
-    <div class="actions">❤️ 💬 🔁</div>
+  <div class="post-box">
+    <textarea placeholder="What's on your mind?"></textarea>
+    <button>Post</button>
   </div>
 
   <div class="post">
-    <div class="user">zygram_team</div>
-    <div class="image">New update coming soon 🚀</div>
-    <div class="actions">❤️ 💬 🔁</div>
-  </div>
+    <b>@ayan</b>
+    <p>Hello Zygram! 👋 This is my first post.</p>
 
-  <div class="post">
-    <div class="user">creator</div>
-    <div class="image">Welcome to Zygram 💜</div>
-    <div class="actions">❤️ 💬 🔁</div>
-  </div>
-
-  <div class="bottom">
-    <a href="home.html">Home</a>
-    <a href="#">Search</a>
-    <a href="#">Profile</a>
+    <div class="actions">
+      ❤️ Like
+      💬 Comment
+    </div>
   </div>
 
 </body>
