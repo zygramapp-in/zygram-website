@@ -58,17 +58,24 @@
 </head>
 
 <body>
-
-  <div class="box">
+    
+    
+<script>
+function signup() {
+  alert("Account created successfully!");
+  window.location.href = "home.html";
+} 
+   
+</script>
+  
+    <div class="box">
     <h2>Create Zygram Account</h2>
 
     <input type="text" placeholder="Username">
     <input type="email" placeholder="Email">
     <input type="password" placeholder="Password">
 
-    <a href="home.html">
-  <button>Create Account</button>
-</a>
+    <button onclick="signup()">Create Account</button>
 
     <p>
   Already have an account?
