@@ -1,61 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Zygram Sign Up</title>
+  <title>Zygram – Coming Soon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: #6a0dad;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       height: 100vh;
-    }
-
-    .box {
-      background: white;
-      width: 90%;
-      max-width: 350px;
-      padding: 25px;
-      border-radius: 15px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #6a0dad, #9b59ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
       text-align: center;
     }
 
-    h2 {
-      color: #6a0dad;
+    .box {
+      padding: 30px;
+      max-width: 350px;
     }
 
-    input {
-      width: 100%;
-      padding: 12px;
-      margin: 10px 0;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      font-size: 16px;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background: #6a0dad;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 18px;
-      margin-top: 10px;
+    h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
     }
 
     p {
-      margin-top: 15px;
+      font-size: 16px;
+      opacity: 0.9;
     }
 
-    a {
-      color: #6a0dad;
-      text-decoration: none;
-      font-weight: bold;
+    .tag {
+      margin-top: 15px;
+      font-size: 14px;
+      opacity: 0.8;
     }
   </style>
 </head>
@@ -63,38 +43,14 @@
 <body>
 
 <div class="box">
-  <h2>Create Zygram Account</h2>
+  <h1>Zygram</h1>
+  <p>🚀 Social media app coming soon</p>
+  <p>We are building something amazing for you</p>
 
-  <input type="text" id="username" placeholder="Username">
-  <input type="email" id="email" placeholder="Email">
-  <input type="password" id="password" placeholder="Password">
-
-  <button onclick="signup()">Create Account</button>
-
-  <p>Already have an account?
-    <a href="login.html">Login</a>
-  </p>
+  <div class="tag">
+    © 2026 Zygram Technologies
+  </div>
 </div>
-
-<script>
-function signup() {
-  var u = document.getElementById("username").value;
-  var e = document.getElementById("email").value;
-  var p = document.getElementById("password").value;
-
-  if (u === "" || e === "" || p === "") {
-    alert("Fill all fields");
-    return;
-  }
-
-  localStorage.setItem("username", u);
-  localStorage.setItem("email", e);
-  localStorage.setItem("password", p);
-
-  alert("Account created successfully!");
-  window.location.href = "login.html";
-}
-</script>
 
 </body>
 </html>
