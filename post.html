@@ -6,26 +6,24 @@
 
   <style>
     body {
-      margin: 0;
       font-family: Arial;
-      background: #f2f2f2;
-      padding-bottom: 70px;
+      background: #f4f4f4;
+      padding: 20px;
     }
 
     textarea {
-      width: 90%;
+      width: 100%;
       height: 120px;
-      margin: 20px;
-      padding: 15px;
+      padding: 12px;
+      font-size: 16px;
       border-radius: 10px;
       border: 1px solid #ccc;
-      font-size: 16px;
     }
 
     button {
-      margin: 0 20px;
-      width: 90%;
-      padding: 12px;
+      width: 100%;
+      margin-top: 15px;
+      padding: 14px;
       background: #6a0dad;
       color: white;
       border: none;
@@ -36,6 +34,7 @@
     .nav {
       position: fixed;
       bottom: 0;
+      left: 0;
       width: 100%;
       background: white;
       display: flex;
@@ -45,16 +44,16 @@
     }
 
     .nav a {
-      text-decoration: none;
-      font-size: 20px;
+      font-size: 22px;
       color: #6a0dad;
+      text-decoration: none;
     }
   </style>
 </head>
 
 <body>
 
-<h2 style="text-align:center;color:#6a0dad;">Create Post</h2>
+<h2>Create Post</h2>
 
 <textarea id="postText" placeholder="What's on your mind?"></textarea>
 
@@ -75,8 +74,16 @@ function addPost() {
     return;
   }
 
-  localStorage.setItem("post", text);
-  alert("Posted!");
+  let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+  posts.unshift({
+    user: localStorage.getItem("username"),
+    text: text,
+    time: "Just now ❤️"
+  });
+
+  localStorage.setItem("posts", JSON.stringify(posts));
+
   window.location.href = "home.html";
 }
 </script>
