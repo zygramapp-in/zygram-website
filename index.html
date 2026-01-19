@@ -20,13 +20,12 @@
       width: 90%;
       max-width: 350px;
       padding: 25px;
-      border-radius: 12px;
+      border-radius: 15px;
       text-align: center;
     }
 
     h2 {
       color: #6a0dad;
-      margin-bottom: 20px;
     }
 
     input {
@@ -46,41 +45,56 @@
       border: none;
       border-radius: 8px;
       font-size: 18px;
-      cursor: pointer;
       margin-top: 10px;
     }
 
     p {
       margin-top: 15px;
-      font-size: 14px;
+    }
+
+    a {
+      color: #6a0dad;
+      text-decoration: none;
+      font-weight: bold;
     }
   </style>
 </head>
 
 <body>
-    
-    
+
+<div class="box">
+  <h2>Create Zygram Account</h2>
+
+  <input type="text" id="username" placeholder="Username">
+  <input type="email" id="email" placeholder="Email">
+  <input type="password" id="password" placeholder="Password">
+
+  <button onclick="signup()">Create Account</button>
+
+  <p>Already have an account?
+    <a href="login.html">Login</a>
+  </p>
+</div>
+
 <script>
 function signup() {
+  var u = document.getElementById("username").value;
+  var e = document.getElementById("email").value;
+  var p = document.getElementById("password").value;
+
+  if (u === "" || e === "" || p === "") {
+    alert("Fill all fields");
+    return;
+  }
+
+  localStorage.setItem("username", u);
+  localStorage.setItem("email", e);
+  localStorage.setItem("password", p);
+
   alert("Account created successfully!");
-  window.location.href = "home.html";
-} 
-   
+  window.location.href = "login.html";
+}
 </script>
-  
-    <div class="box">
-    <h2>Create Zygram Account</h2>
-
-    <input type="text" placeholder="Username">
-    <input type="email" placeholder="Email">
-    <input type="password" placeholder="Password">
-
-    <button onclick="signup()">Create Account</button>
-
-    <p>
-  Already have an account?
-  <a href="home.html">Login</a>
-</p>
 
 </body>
 </html>
