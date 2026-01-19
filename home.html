@@ -38,7 +38,13 @@
     }
 
     .actions {
-      margin-top: 10px;
+      margin-top: 8px;
+      font-size: 16px;
+    }
+
+    .actions span {
+      margin-right: 15px;
+      cursor: pointer;
     }
 
     input {
@@ -60,9 +66,9 @@
 
     .comment {
       font-size: 14px;
-      margin-top: 5px;
       background: #eee;
       padding: 6px;
+      margin-top: 5px;
       border-radius: 6px;
     }
   </style>
@@ -77,55 +83,63 @@
 <script>
 let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
-function savePosts() {
+function save() {
   localStorage.setItem("posts", JSON.stringify(posts));
 }
 
-function addComment(index) {
-  let input = document.getElementById("comment" + index);
+function likePost(i) {
+  posts[i].likes = posts[i].likes || 0;
+  posts[i].likes++;
+  save();
+  load();
+}
+
+function addComment(i) {
+  let input = document.getElementById("c" + i);
   let text = input.value;
 
   if (text === "") return;
 
-  posts[index].comments = posts[index].comments || [];
-  posts[index].comments.push(text);
+  posts[i].comments = posts[i].comments || [];
+  posts[i].comments.push(text);
 
-  savePosts();
-  loadFeed();
+  save();
+  load();
 }
 
-function loadFeed() {
+function load() {
   let feed = document.getElementById("feed");
   feed.innerHTML = "";
 
-  posts.reverse().forEach((post, i) => {
+  posts.reverse().forEach((p, i) => {
     let commentsHTML = "";
 
-    if (post.comments) {
-      post.comments.forEach(c => {
+    if (p.comments) {
+      p.comments.forEach(c => {
         commentsHTML += `<div class="comment">${c}</div>`;
       });
     }
 
     feed.innerHTML += `
       <div class="post">
-        <div class="username">@${post.user}</div>
-        <p>${post.caption}</p>
+        <div class="username">@${p.user}</div>
+        <p>${p.caption}</p>
 
         <div class="actions">
-          ❤️ ${post.likes || 0}
+          <span onclick="likePost(${i})">❤️ ${p.likes || 0}</span>
+          <span>💬 ${(p.comments && p.comments.length) || 0}</span>
         </div>
 
         ${commentsHTML}
 
-        <input id="comment${i}" placeholder="Add comment...">
+        <input id="c${i}" placeholder="Add comment...">
         <button onclick="addComment(${i})">Post</button>
       </div>
     `;
   });
 }
 
-loadFeed();
+load();
 </script>
 
 </body>
