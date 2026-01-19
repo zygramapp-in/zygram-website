@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f4f4;
+      padding-bottom: 70px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #6a0dad;
+    }
+
+    button {
+      padding: 12px 25px;
+      background: #6a0dad;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      border-top: 1px solid #ccc;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-size: 20px;
+      color: #6a0dad;
+    }
+  </style>
+</head>
+
+<body>
+
+<h2>My Profile</h2>
+
+<p><b>Username:</b></p>
+<p id="user"></p>
+
+<button onclick="logout()">Logout</button>
+
+<div class="nav">
+  <a href="home.html">🏠</a>
+  <a href="post.html">➕</a>
+  <a href="profile.html">👤</a>
+</div>
+
+<script>
+document.getElementById("user").innerText =
+  localStorage.getItem("username");
+
+function logout() {
+  localStorage.clear();
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>
