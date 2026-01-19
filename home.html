@@ -9,45 +9,62 @@
       margin: 0;
       font-family: Arial;
       background: #f4f4f4;
-      padding: 20px;
+      padding-bottom: 70px;
     }
 
     h2 {
+      text-align: center;
       color: #6a0dad;
     }
 
     .post {
       background: white;
+      margin: 15px;
       padding: 15px;
       border-radius: 10px;
-      margin-bottom: 15px;
     }
 
-    button {
-      padding: 10px 15px;
-      background: #6a0dad;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      margin-top: 10px;
+    .nav {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background: white;
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      border-top: 1px solid #ccc;
+    }
+
+    .nav a {
+      text-decoration: none;
+      font-size: 20px;
+      color: #6a0dad;
     }
   </style>
 </head>
 
 <body>
 
-<h2>Welcome to Zygram 👋</h2>
+<h2>Zygram</h2>
 
-<div class="post">
-  <b>@zygram</b>
-  <p>This is your first Zygram post 🚀</p>
+<div class="post" id="feed">
 </div>
 
-<button onclick="logout()">Logout</button>
+<div class="nav">
+  <a href="home.html">🏠</a>
+  <a href="post.html">➕</a>
+  <a href="profile.html">👤</a>
+</div>
 
 <script>
-function logout() {
-  window.location.href = "login.html";
+var post = localStorage.getItem("post");
+
+if (post) {
+  document.getElementById("feed").innerHTML =
+    "<b>@" + localStorage.getItem("username") + "</b><p>" + post + "</p>";
+} else {
+  document.getElementById("feed").innerHTML =
+    "<p style='text-align:center'>No posts yet</p>";
 }
 </script>
 
